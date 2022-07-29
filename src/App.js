@@ -1,10 +1,12 @@
 import "./App.css";
-import ReceiptForm from "./ReceiptForm";
+import DataTable from "./Components/DataTable";
+import ReceiptForm from "./Components/ReceiptForm";
 
 function App() {
   return (
     <div className="App my-20">
       <ReceiptForm />
+      <DataTable />
     </div>
   );
 }
