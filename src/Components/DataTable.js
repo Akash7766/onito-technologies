@@ -1,39 +1,33 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const DataTable = () => {
+  const receiptData = useSelector((store) => store.receipt);
   return (
     <div className="container mx-auto mt-10">
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th>Date</th>
               <th>Amount</th>
               <th>Payment Method</th>
               <th>Remark</th>
-              <th>Handle</th>
+              <th className="text-center">Handle</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>
-                <button className="btn btn-xs">Delete</button>
-              </td>
-            </tr>
-            <tr class="active">
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-              <td>
-                {" "}
-                <button className="btn btn-xs">Delete</button>
-              </td>
-            </tr>
+            {receiptData.map((data) => (
+              <tr>
+                <th>{data.date}</th>
+                <td>{data.amount}</td>
+                <td>{data.payment_method}</td>
+                <td>{data.remark}</td>
+                <td className="text-center">
+                  <button className="btn btn-xs">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
