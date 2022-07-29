@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = [
   {
-    id: 1,
+    id: uuidv4(),
     date: "2020/07/25",
     amount: 5142,
     payment_method: "bank",
     remark: "Akash",
   },
   {
-    id: 2,
+    id: uuidv4(),
     date: "2020/07/25",
     amount: 500,
     payment_method: "cash",
@@ -23,12 +24,17 @@ export const receiptSlice = createSlice({
   reducers: {
     addNewReceipt: (state, action) => {
       state.push(action.payload);
-      console.log(action.payload);
-      console.log(state);
+    },
+    deleteReceipt: (state, action) => {
+      const { id } = action.payload;
+      const exitsContact = state.find((contact) => contact.id === id);
+      if (exitsContact) {
+        return state.filter((contact) => contact.id !== id);
+      }
     },
   },
 });
 
-export const { addNewReceipt } = receiptSlice.actions;
+export const { addNewReceipt, deleteReceipt } = receiptSlice.actions;
 
 export default receiptSlice.reducer;

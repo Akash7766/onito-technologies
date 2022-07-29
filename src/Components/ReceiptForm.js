@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewReceipt } from "../services/receiptSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const ReceiptForm = () => {
   const [date, setDate] = useState("");
@@ -10,6 +11,7 @@ const ReceiptForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newReceipt = {
+      id: uuidv4(),
       date,
       amount,
       payment_method: e.target.select.value,

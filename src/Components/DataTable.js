@@ -1,8 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteReceipt } from "../services/receiptSlice";
 
 const DataTable = () => {
   const receiptData = useSelector((store) => store.receipt);
+  const dispatch = useDispatch();
+  const handleDelete = (id) => {
+    dispatch(deleteReceipt({ id }));
+  };
   return (
     <div className="container mx-auto mt-10">
       <div className="overflow-x-auto">
@@ -18,13 +23,18 @@ const DataTable = () => {
           </thead>
           <tbody>
             {receiptData.map((data) => (
-              <tr>
+              <tr key={data.id}>
                 <th>{data.date}</th>
                 <td>{data.amount}</td>
                 <td>{data.payment_method}</td>
                 <td>{data.remark}</td>
                 <td className="text-center">
-                  <button className="btn btn-xs">Delete</button>
+                  <button
+                    onClick={() => handleDelete(data.id)}
+                    className="btn btn-xs"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
