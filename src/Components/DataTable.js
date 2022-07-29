@@ -31,7 +31,7 @@ const DataTable = () => {
                 <td className="text-center">
                   <button
                     onClick={() => handleDelete(data.id)}
-                    className="btn btn-xs"
+                    className="btn btn-xs btn-warning"
                   >
                     Delete
                   </button>

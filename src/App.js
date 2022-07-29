@@ -4,7 +4,7 @@ import ReceiptForm from "./Components/ReceiptForm";
 
 function App() {
   return (
-    <div className="App my-20">
+    <div className="App my-14">
       <ReceiptForm />
       <DataTable />
     </div>
